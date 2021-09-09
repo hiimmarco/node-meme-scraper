@@ -2,6 +2,7 @@
   "name": "node-meme-scraper",
   "version": "1.0.0",
   "main": "index.js",
+  "type": "module",
   "repository": "https://github.com/hiimmarco/node-meme-scraper.git",
   "author": "Marco Bogner <marcobogner@gmail.com>",
   "license": "MIT",
