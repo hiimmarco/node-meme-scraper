@@ -1,4 +1,6 @@
-// Import node-fetch for fetching the html
+// Import node-fetch for fetching the HTML
+// Import cheerio for parsing the HTML
+// Import image downloader to download image to folder
 
 import cheerio from 'cheerio';
 import fetch from 'node-fetch';
@@ -22,8 +24,6 @@ $('img').each((i, el) => {
   // console.log(allUrls);
   imageLinks.push(allUrls);
 });
-
-// console.log(imageLinks);
 
 // Reduce the array to 10 URLs
 
