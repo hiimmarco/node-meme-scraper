@@ -31,8 +31,6 @@ $('img').each((i, el) => {
 
 const tenImageLinks = imageLinks.slice(0, 10);
 
-// console.log(tenImageLinks);
-
 // Download images to folder
 
 const options = {
