@@ -10,33 +10,23 @@ const response = await fetch(
 );
 const body = await response.text();
 
-// Pass HTML to cheerio to get URLs
-/*
-let $ = cheerio.load(body);
-let imageSource = $('div img').attr('src');
+const $ = cheerio.load(body);
 
-console.log(imageSource);
-*/
+// Declare a new array to save all image URLs from the website
+const imageLinks = [];
 
-/* Here I tried a function that loops over the URLs, but only get the same first URL 10 times.
-function getTenUrls() {
-  for (let i = 0; i < 10; i++) {
-    let $ = cheerio.load(body);
-    let imageSource = $('div img').attr('src');
-    console.log(imageSource);
-  };
-};
-const tenUrls = getTenUrls();
-*/
+// Get only the imageURLs and push them into the newly created array "tenLinks"
 
-let $ = cheerio.load(body);
+$('img').each((i, el) => {
+  const allUrls = $(el).attr('src');
+  // console.log(allUrls);
+  imageLinks.push(allUrls);
+});
 
-function getUrls() {
-  $('img').each((i, el) => {
-    const tenUrls = $(el).attr('src');
-    console.log(tenUrls);
-    return tenUrls;
-  });
-}
+// console.log(imageLinks);
 
-getUrls();
+// Reduce the array to 10 URLs
+
+const tenImageLinks = imageLinks.slice(0, 10);
+
+console.log(tenImageLinks);
