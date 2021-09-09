@@ -8,6 +8,9 @@ const response = await fetch(
 );
 const body = await response.text();
 
-console.log(body);
+// console.log(body);
 
 let $ = cheerio.load(body);
+let imageSource = $('img').attr('src');
+
+console.log(imageSource);
