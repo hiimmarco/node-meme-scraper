@@ -1,9 +1,8 @@
 // Import node-fetch for fetching the HTML
 // Import cheerio for parsing the HTML
-// Import image downloader to download image to folder
 
+import fs from 'node:fs';
 import cheerio from 'cheerio';
-import download from 'image-downloader';
 import fetch from 'node-fetch';
 
 // Fetch the HTML
@@ -31,23 +30,27 @@ $('img').each((i, el) => {
 
 const tenImageLinks = imageLinks.slice(0, 10);
 
-// Download images to folder
+// Create folder for images
 
-const options = {
-  url: '',
-  dest: './memes', // will be saved to ./memes/image.jpg
-};
+const folder = './memes';
 
-// Download each picture per URL
+if (!fs.existsSync(folder)) {
+  fs.mkdirSync(folder);
+}
 
-tenImageLinks.forEach((link) => {
-  options.url = link;
-  download
-    .image(options)
-    .then(({ filename }) => {
-      console.log('Saved to', filename); // saved to ./memes/image.jpg
-    })
-    .catch((err) => console.error(err));
-});
+// Create function for download
 
-// YEAH!!!!!
+for (let i = 0; i < tenImageLinks.length; i++) {
+  const imageDownload = async () => {
+    const serverResponse = await fetch(tenImageLinks[i]);
+    const images = await serverResponse.buffer();
+    fs.writeFile(`./memes/meme-${i + 1}.jpg`, images, () => {
+      console.log(`
+      Download of image ${i + 1} successful.`);
+    });
+  };
+
+  // Start download function
+
+  imageDownload();
+}
