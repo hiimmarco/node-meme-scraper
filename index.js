@@ -31,23 +31,4 @@ $('img').each((i, el) => {
 
 const tenImageLinks = imageLinks.slice(0, 10);
 
-// Download images to folder
-
-const options = {
-  url: '',
-  dest: './memes', // will be saved to ./memes/image.jpg
-};
-
-// Download each picture per URL
-
-tenImageLinks.forEach((link) => {
-  options.url = link;
-  download
-    .image(options)
-    .then(({ filename }) => {
-      console.log('Saved to', filename); // saved to ./memes/image.jpg
-    })
-    .catch((err) => console.error(err));
-});
-
-// YEAH!!!!!
+// Create folder for images
