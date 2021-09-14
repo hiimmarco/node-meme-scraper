@@ -37,3 +37,20 @@ const folder = './memes';
 if (!fs.existsSync(folder)) {
   fs.mkdirSync(folder);
 }
+
+// Create function for download
+
+for (let i = 0; i < tenImageLinks.length; i++) {
+  const imageDownload = async () => {
+    const serverResponse = await fetch(tenImageLinks[i]);
+    const images = await serverResponse.buffer();
+    fs.writeFile(`./memes/meme-${i + 1}.jpg`, images, () => {
+      console.log(`
+      Download of image ${i + 1} successful.`);
+    });
+  };
+
+  // Start download function
+
+  imageDownload();
+}
