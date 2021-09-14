@@ -1,9 +1,7 @@
 // Import node-fetch for fetching the HTML
 // Import cheerio for parsing the HTML
-// Import image downloader to download image to folder
 
 import cheerio from 'cheerio';
-import download from 'image-downloader';
 import fetch from 'node-fetch';
 
 // Fetch the HTML
