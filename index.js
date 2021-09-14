@@ -1,6 +1,7 @@
 // Import node-fetch for fetching the HTML
 // Import cheerio for parsing the HTML
 
+import fs from 'node:fs';
 import cheerio from 'cheerio';
 import fetch from 'node-fetch';
 
@@ -30,3 +31,9 @@ $('img').each((i, el) => {
 const tenImageLinks = imageLinks.slice(0, 10);
 
 // Create folder for images
+
+const folder = './memes';
+
+if (!fs.existsSync(folder)) {
+  fs.mkdirSync(folder);
+}
