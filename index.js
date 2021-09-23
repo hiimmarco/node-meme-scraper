@@ -42,14 +42,17 @@ if (!fs.existsSync(folder)) {
 
 for (let i = 0; i < tenImageLinks.length; i++) {
   const imageDownload = async () => {
-    const serverResponse = await fetch(tenImageLinks[i]);
-    const buffer = await serverResponse.buffer();
-    fs.writeFile(`./memes/meme-${i + 1}.jpg`, buffer, () => {
-      console.log(`
+    try {
+      const serverResponse = await fetch(tenImageLinks[i]);
+      const buffer = await serverResponse.buffer();
+      fs.writeFile(`./memes/meme-${i + 1}.jpg`, buffer, () => {
+        console.log(`
       Download of image ${i + 1} successful.`);
-    });
+      });
+    } catch (error) {
+      console.log(error);
+    }
   };
-
   // Start download function
 
   imageDownload();
