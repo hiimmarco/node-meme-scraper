@@ -18,12 +18,12 @@ const $ = cheerio.load(body);
 
 const imageLinks = [];
 
-// Get only the imageURLs and push them into the newly created array "tenLinks"
+// Get only the imageURLs and push them into the newly created array "imageLinks"
 
 $('img').each((i, el) => {
-  const allUrls = $(el).attr('src');
+  const imageUrls = $(el).attr('src');
   // console.log(allUrls);
-  imageLinks.push(allUrls);
+  imageLinks.push(imageUrls);
 });
 
 // Reduce the array to 10 URLs
@@ -43,8 +43,8 @@ if (!fs.existsSync(folder)) {
 for (let i = 0; i < tenImageLinks.length; i++) {
   const imageDownload = async () => {
     const serverResponse = await fetch(tenImageLinks[i]);
-    const images = await serverResponse.buffer();
-    fs.writeFile(`./memes/meme-${i + 1}.jpg`, images, () => {
+    const buffer = await serverResponse.buffer();
+    fs.writeFile(`./memes/meme-${i + 1}.jpg`, buffer, () => {
       console.log(`
       Download of image ${i + 1} successful.`);
     });
