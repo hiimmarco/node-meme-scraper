@@ -18,12 +18,11 @@ const $ = cheerio.load(body);
 
 const imageLinks = [];
 
-// Get only the imageURLs and push them into the newly created array "imageLinks"
+// Get only the image URLs and push them into the newly created array "imageLinks"
 
 $('img').each((i, el) => {
-  const imageUrls = $(el).attr('src');
-  // console.log(allUrls);
-  imageLinks.push(imageUrls);
+  const item = $(el).attr('src');
+  imageLinks.push(item);
 });
 
 // Reduce the array to 10 URLs
