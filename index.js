@@ -21,8 +21,8 @@ const imageLinks = [];
 // Get only the image URLs and push them into the newly created array "imageLinks"
 
 $('img').each((i, el) => {
-  const item = $(el).attr('src');
-  imageLinks.push(item);
+  const getOnlyUrls = $(el).attr('src');
+  imageLinks.push(getOnlyUrls);
 });
 
 // Reduce the array to 10 URLs
